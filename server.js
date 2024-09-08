@@ -7,7 +7,7 @@ const server = http.createServer(app);
 // Thiết lập CORS và cấu hình Socket.IO để tránh timeout
 const io = socketIo(server, {
   cors: {
-    origin: "https://apinguoilaoi.amazingtech.cc",  // Thay thế bằng domain của bạn
+    origin: "*",  // Thay thế bằng domain của bạn
     methods: ["GET", "POST"],
     credentials: true
   },
@@ -16,7 +16,7 @@ const io = socketIo(server, {
 });
 
 io.on('connection', (socket) => {
-  console.log('New client connected', socket.id);
+  console.log('New client connectedsssssssssssssssss', socket.id);
 
   socket.on('join-room', (roomId) => {
     const room = io.sockets.adapter.rooms.get(roomId);
