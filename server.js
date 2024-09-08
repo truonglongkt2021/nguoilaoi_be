@@ -9,13 +9,14 @@ const io = socketIo(server, {
   cors: {
     origin: "https://nguoilaoi.amazingtech.cc",  // Chỉ định domain bạn muốn cho phép
     methods: ["GET", "POST"],  // Các phương thức được phép
-    credentials: true,  // Cho phép gửi thông tin xác thực (cookies, HTTP headers...)
+    credentials: true,  // Cho phép gửi thông tin xác thực
   }
 });
 
 io.on('connection', (socket) => {
   console.log('New client connected', socket.id);
 
+  // Lắng nghe tín hiệu từ peer và chuyển tiếp cho peer khác
   socket.on('signal', (data) => {
     io.to(data.to).emit('signal', {
       from: socket.id,
